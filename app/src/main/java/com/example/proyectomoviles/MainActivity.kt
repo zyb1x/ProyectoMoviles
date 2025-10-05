@@ -12,6 +12,8 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.proyectomoviles.layouts.BotonesOrdenados
+import com.example.proyectomoviles.layouts.IniciarSesionBtn
 import com.example.proyectomoviles.ui.theme.ProyectoMovilesTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,24 +21,20 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+
+            BotonesOrdenados()
             ProyectoMovilesTheme {
 
-                    Greeting()
+
+                    //Greeting()
                 }
             }
         }
     }
 
 
-@Composable
+/*@Composable
 fun Greeting() {
     TextField(value = "Type here...", onValueChange = {})
-}
+}*/
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ProyectoMovilesTheme {
-        Greeting()
-    }
-}
