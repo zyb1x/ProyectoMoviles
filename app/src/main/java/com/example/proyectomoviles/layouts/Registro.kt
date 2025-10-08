@@ -11,7 +11,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.CheckboxDefaults.colors
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -89,6 +89,9 @@ fun DatosUsuario() {
                     onValueChange = { nombre = it },
                     modifier = Modifier.textFieldTamaño(),
                     shape = RoundedCornerShape(10.dp),
+                    textStyle = LocalTextStyle.current.copy(
+                        fontSize = 19.sp
+                    ),
                     label = { Text("Nombre(s)") }
                 )
 
@@ -100,6 +103,9 @@ fun DatosUsuario() {
                     onValueChange = { correo = it },
                     modifier = Modifier.textFieldTamaño(),
                     shape = RoundedCornerShape(10.dp),
+                    textStyle = LocalTextStyle.current.copy(
+                        fontSize = 19.sp
+                    ),
                     label = { Text("Correo") }
                 )
 
@@ -111,6 +117,9 @@ fun DatosUsuario() {
                     onValueChange = { contrasenia = it },
                     modifier = Modifier.textFieldTamaño(),
                     shape = RoundedCornerShape(10.dp),
+                    textStyle = LocalTextStyle.current.copy(
+                        fontSize = 19.sp
+                    ),
                     label = { Text("Contraseña") }
                 )
 
@@ -122,6 +131,9 @@ fun DatosUsuario() {
                     onValueChange = { confirmarContrasenia = it },
                     modifier = Modifier.textFieldTamaño(),
                     shape = RoundedCornerShape(10.dp),
+                    textStyle = LocalTextStyle.current.copy(
+                        fontSize = 19.sp
+                    ),
                     label = { Text("Confirmar Contraseña"
                         //aqui va color
                     )}
@@ -135,6 +147,9 @@ fun DatosUsuario() {
                     onValueChange = { domicilio = it },
                     modifier = Modifier.textFieldTamaño(),
                     shape = RoundedCornerShape(10.dp),
+                    textStyle = LocalTextStyle.current.copy(
+                        fontSize = 19.sp
+                    ),
                     label = {
                         Text("Domicilio") }
                 )
@@ -147,17 +162,18 @@ fun DatosUsuario() {
                     onValueChange = { telefono = it },
                     modifier = Modifier.textFieldTamaño(),
                     shape = RoundedCornerShape(10.dp),
+                    textStyle = LocalTextStyle.current.copy(
+                        fontSize = 19.sp
+                    ),
                     label = {
                         Text("Teléfono") }
                 )
 
-                Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(25.dp))
 
                 Button(
                     onClick = { /* logica del boton */ },
-                    modifier = Modifier
-                       .width(280.dp)
-                        .height(45.dp)
+                    modifier = Modifier.textFieldTamaño()
                         .align(Alignment.CenterHorizontally),
                     shape = RoundedCornerShape(10.dp),
                     colors = ButtonDefaults.buttonColors(
@@ -166,7 +182,7 @@ fun DatosUsuario() {
                     )
 
                 ) {
-                    Text(text = "Registrarse", fontSize = 15.sp)
+                    Text(text = "Registrarse", fontSize = 18.sp)
                 }
             }
         }
