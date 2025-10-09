@@ -15,6 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.proyectomoviles.layouts.BotonesOrdenados
 import com.example.proyectomoviles.layouts.DatosUsuario
 import com.example.proyectomoviles.layouts.IniciarSesionBtn
+import com.example.proyectomoviles.layouts.InicioDeSesionPreview
 import com.example.proyectomoviles.layouts.LogoAplicacion
 import com.example.proyectomoviles.ui.theme.ProyectoMovilesTheme
 
@@ -23,20 +24,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            DatosUsuario()
+            InicioDeSesionPreview()
+            // DatosUsuario()
             //BotonesOrdenados()
-            ProyectoMovilesTheme {
 
-
-                    //Greeting()
-                }
             }
         }
     }
 
 
-/*@Composable
-fun Greeting() {
-    TextField(value = "Type here...", onValueChange = {})
-}*/
+
 
