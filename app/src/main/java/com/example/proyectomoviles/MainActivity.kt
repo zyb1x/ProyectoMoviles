@@ -4,8 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.example.proyectomoviles.layouts.DatosUsuario
-import com.example.proyectomoviles.layouts.InicioDeSesionPreview
+
+import com.example.proyectomoviles.proyecto.login.layouts.ui.InicioDeSesionScreen
+import com.example.proyectomoviles.proyecto.login.layouts.viewmodel.LoginViewModel
 
 
 class MainActivity : ComponentActivity() {
@@ -13,7 +14,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            InicioDeSesionPreview()
+            //InicioDeSesionPreview()
+
+            InicioDeSesionScreen(LoginViewModel())
              //DatosUsuario()
             //BotonesOrdenados()
 

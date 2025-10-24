@@ -1,4 +1,4 @@
-package com.example.proyectomoviles.layouts
+package com.example.proyectomoviles.proyecto.registro.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box

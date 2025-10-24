@@ -1,4 +1,4 @@
-package com.example.proyectomoviles.layouts
+package com.example.proyectomoviles.proyecto.inicio.ui
 
 
 
