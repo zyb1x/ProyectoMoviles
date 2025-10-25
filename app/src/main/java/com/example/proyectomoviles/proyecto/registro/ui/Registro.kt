@@ -18,9 +18,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -28,40 +26,22 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.example.proyectomoviles.R
+import com.example.proyectomoviles.proyecto.registro.viewmodel.RegistroViewModel
 import com.example.proyectomoviles.ui.theme.LightGreen
 import com.example.proyectomoviles.ui.theme.MediumGreen
 
 @Composable
-
-fun DatosUsuario() {
+fun RegistroScreen(viewModel: RegistroViewModel) {
     ConstraintLayout(modifier = Modifier.fillMaxSize()) {
         val (boxguardar, btonRegresar, imgFondo) = createRefs()
 
-
-        var nombre by remember {
-            mutableStateOf("")
-        }
-
-        var correo by remember {
-            mutableStateOf("")
-        }
-
-        var contrasenia by remember {
-            mutableStateOf("")
-        }
-
-        var confirmarContrasenia by remember {
-            mutableStateOf("")
-        }
-
-        var domicilio by remember {
-            mutableStateOf("")
-        }
-
-        var telefono by remember {
-            mutableStateOf("")
-        }
-
+        val nombre: String by viewModel.nombre.observeAsState(initial = "")
+        val correo: String by viewModel.correo.observeAsState(initial = "")
+        val contrasenia: String by viewModel.contrasenia.observeAsState(initial = "")
+        val confirmarContrasenia: String by viewModel.confirmarContrasenia.observeAsState(initial = "")
+        val domicilio: String by viewModel.domicilio.observeAsState(initial = "")
+        val telefono: String by viewModel.telefono.observeAsState(initial = "")
+        val registroEnable: Boolean by viewModel.registroEnable.observeAsState(initial = false)
 
         fun Modifier.textFieldTamaño() = this
             .fillMaxWidth()
@@ -79,9 +59,10 @@ fun DatosUsuario() {
                 }
         )
 
-
         Box(
-            modifier = Modifier.fillMaxWidth().height(900.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(800.dp)
                 .constrainAs(boxguardar) {
                     top.linkTo(parent.top)
                     start.linkTo(parent.start)
@@ -89,148 +70,121 @@ fun DatosUsuario() {
                 },
             contentAlignment = Alignment.TopCenter
         ) {
-
             Column(
-
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 55.dp), //espacio de los costados
+                    .padding(horizontal = 55.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
-
             ) {
-
                 Spacer(modifier = Modifier.height(200.dp))
 
                 OutlinedTextField(
                     value = nombre,
-                    onValueChange = { nombre = it },
+                    onValueChange = { viewModel.onNombreChanged(it) },
                     modifier = Modifier.textFieldTamaño(),
                     shape = RoundedCornerShape(10.dp),
-                    textStyle = LocalTextStyle.current.copy(
-                        fontSize = 19.sp
-                    ),
+                    textStyle = LocalTextStyle.current.copy(fontSize = 19.sp),
                     label = { Text("Nombre(s)") }
                 )
-
 
                 Spacer(modifier = Modifier.height(12.dp))
 
                 OutlinedTextField(
                     value = correo,
-                    onValueChange = { correo = it },
+                    onValueChange = { viewModel.onCorreoChanged(it) },
                     modifier = Modifier.textFieldTamaño(),
                     shape = RoundedCornerShape(10.dp),
-                    textStyle = LocalTextStyle.current.copy(
-                        fontSize = 19.sp
-                    ),
+                    textStyle = LocalTextStyle.current.copy(fontSize = 19.sp),
                     label = { Text("Correo") }
                 )
-
 
                 Spacer(modifier = Modifier.height(12.dp))
 
                 OutlinedTextField(
                     value = contrasenia,
-                    onValueChange = { contrasenia = it },
+                    onValueChange = { viewModel.onContraseniaChanged(it) },
                     modifier = Modifier.textFieldTamaño(),
                     shape = RoundedCornerShape(10.dp),
-                    textStyle = LocalTextStyle.current.copy(
-                        fontSize = 19.sp
-                    ),
+                    textStyle = LocalTextStyle.current.copy(fontSize = 19.sp),
                     label = { Text("Contraseña") }
                 )
-
 
                 Spacer(modifier = Modifier.height(12.dp))
 
                 OutlinedTextField(
                     value = confirmarContrasenia,
-                    onValueChange = { confirmarContrasenia = it },
+                    onValueChange = { viewModel.onConfirmarContraseniaChanged(it) },
                     modifier = Modifier.textFieldTamaño(),
                     shape = RoundedCornerShape(10.dp),
-                    textStyle = LocalTextStyle.current.copy(
-                        fontSize = 19.sp
-                    ),
-                    label = { Text("Confirmar Contraseña"
-                        //aqui va color
-                    )}
+                    textStyle = LocalTextStyle.current.copy(fontSize = 19.sp),
+                    label = { Text("Confirmar Contraseña") }
                 )
-
 
                 Spacer(modifier = Modifier.height(12.dp))
 
                 OutlinedTextField(
                     value = domicilio,
-                    onValueChange = { domicilio = it },
+                    onValueChange = { viewModel.onDomicilioChanged(it) },  //wtf mejor junto latas ya me buguie
                     modifier = Modifier.textFieldTamaño(),
                     shape = RoundedCornerShape(10.dp),
-                    textStyle = LocalTextStyle.current.copy(
-                        fontSize = 19.sp
-                    ),
-                    label = {
-                        Text("Domicilio") }
+                    textStyle = LocalTextStyle.current.copy(fontSize = 19.sp),
+                    label = { Text("Domicilio") }
                 )
-
 
                 Spacer(modifier = Modifier.height(12.dp))
 
                 OutlinedTextField(
                     value = telefono,
-                    onValueChange = { telefono = it },
+                    onValueChange = { viewModel.onTelefonoChanged(it) },
                     modifier = Modifier.textFieldTamaño(),
                     shape = RoundedCornerShape(10.dp),
-                    textStyle = LocalTextStyle.current.copy(
-                        fontSize = 19.sp
-                    ),
-                    label = {
-                        Text("Teléfono") }
+                    textStyle = LocalTextStyle.current.copy(fontSize = 19.sp),
+                    label = { Text("Teléfono") }
                 )
 
                 Spacer(modifier = Modifier.height(25.dp))
 
                 Button(
-                    onClick = { /* logica del boton */ },
-                    modifier = Modifier.textFieldTamaño()
+                    onClick = { /* viewModel.onRegisterSelected() */ },
+                    modifier = Modifier
+                        .fillMaxWidth(0.9f)
+                        .height(48.dp)
                         .align(Alignment.CenterHorizontally),
                     shape = RoundedCornerShape(10.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MediumGreen,
                         contentColor = LightGreen
-                    )
+                    ),
+
+                    enabled = registroEnable
 
                 ) {
                     Text(text = "Registrarse", fontSize = 18.sp)
-                }
-                @Composable
-                fun LogoAplicacion2(){
-                    Image(
-                        painter = painterResource(id = R.drawable.logo_carita),
-                        contentDescription = "Logo de la aplicacion",
-                        modifier = Modifier.size(150.dp)
-                    )
                 }
             }
         }
 
         Button(
-            onClick = { /* logica del boton */ },
+            onClick = { /* logica par regresar */ },
             modifier = Modifier
                 .width(159.dp)
                 .height(45.dp)
                 .constrainAs(btonRegresar) {
                     start.linkTo(parent.start, margin = 25.dp)
-                    bottom.linkTo(parent.bottom, margin = 70.dp)
-                },colors = ButtonDefaults.buttonColors(
+                    bottom.linkTo(parent.bottom, margin = 30.dp)
+                },
+            colors = ButtonDefaults.buttonColors(
                 containerColor = LightGreen,
-                contentColor = MediumGreen),
-                shape = RoundedCornerShape(10.dp)
+                contentColor = MediumGreen
+            ),
+            shape = RoundedCornerShape(10.dp)
         ) {
             Text(text = "◀ Iniciar Sesión", fontSize = 15.sp)
         }
 
 
 
-
     }
 }
+
 

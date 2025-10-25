@@ -43,7 +43,7 @@ fun LogoAplicacion(){
 
 @Composable //texto de bienvenido
 fun TextoBienvenido(){
-    Text(text = "Bienvenidx",
+    Text(text = "Bienvenido",
         color = MediumGreen,
         fontSize = 45.sp,
         fontWeight = FontWeight.SemiBold
